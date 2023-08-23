@@ -3,9 +3,9 @@
 Cloning Instagram using Django Rest Framework (DRF) is a challenging and comprehensive project that covers a wide range of features. Here's a roadmap structure to help guide you through the process of building a simplified version of Instagram using DRF:
 
 ### 1. Project Setup:
- - Set up a new Django project for your Instagram clone. 
- - Create virtual environment and install necessary packages (Django, DRF, etc.). 
- - Configure your project settings, database, and static files. 
+ - Set up a new Django project for your Instagram clone. ✅
+ - Create virtual environment and install necessary packages (Django, DRF, etc.). ✅
+ - Configure your project settings, database, and static files. ✅
 ### 2. User Authentication:
 
 - Implement user registration and login functionalities.
