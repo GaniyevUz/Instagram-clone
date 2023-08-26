@@ -17,6 +17,8 @@ psycopg2-binary = "^2.9.6"
 django-jazzmin = "^2.6.0"
 django-debug-toolbar = "^4.1.0"
 python-dotenv = "^1.0.0"
+daphne = "^4.0.0"
+twisted = {extras = ["http2", "tls"], version = "^22.10.0"}
 
 [build-system]
 requires = ["poetry-core"]
