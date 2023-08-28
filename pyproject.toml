@@ -19,6 +19,8 @@ django-debug-toolbar = "^4.1.0"
 python-dotenv = "^1.0.0"
 daphne = "^4.0.0"
 twisted = {extras = ["http2", "tls"], version = "^22.10.0"}
+django-storages = "^1.13.2"
+boto3 = "^1.28.35"
 
 [build-system]
 requires = ["poetry-core"]
