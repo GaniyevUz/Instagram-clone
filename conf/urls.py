@@ -18,9 +18,16 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=[AllowAny],
 )
+
+
+def trigger_error(request):
+    return 1 / 0
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('apps.urls')),
+    path('test/', trigger_error)
 ]
 
 if settings.DEBUG:
