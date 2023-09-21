@@ -1,13 +1,13 @@
 from django.http import Http404
 from rest_framework import status
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, ValidationError
 from rest_framework.generics import ListCreateAPIView, ListAPIView, DestroyAPIView
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from shared.permissions import IsPublicAccount
+from shared.permissions import IsPublicAccount, has_permission
 from users.models import UserProfile
 from users.serializers import UserProfileSerializer, UserFollowingModelSerializer, UserFollowModelSerializer
 from users.serializers.users import UserViewProfileModelSerializer
@@ -24,6 +24,8 @@ class FollowListCreateAPIVIew(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return UserProfile.objects.none()
         return self.request.user.following.all()
 
     def list(self, request, *args, **kwargs):
@@ -60,6 +62,8 @@ class FollowersListAPIVIew(ListAPIView):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return UserProfile.objects.none()
         return self.request.user.followers.all()
 
 
@@ -69,6 +73,8 @@ class FollowersListAPIViewByUsername(ListAPIView):
     permission_classes = (IsPublicAccount,)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return UserProfile.objects.none()
         if username := self.kwargs.get('username'):
             qs = super().get_queryset().filter(username=username)
             if qs.exists():
@@ -79,6 +85,8 @@ class FollowersListAPIViewByUsername(ListAPIView):
 
 class FollowingListAPIViewByUsername(FollowersListAPIViewByUsername):
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return UserProfile.objects.none()
         if username := self.kwargs.get('username'):
             qs = self.queryset.filter(username=username)
             if qs.exists():

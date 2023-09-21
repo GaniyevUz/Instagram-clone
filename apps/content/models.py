@@ -62,7 +62,7 @@ class Comment(Model):
         unique_together = ('post', 'reel')
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        if not (self.post and self.reel):
+        if not (self.post or self.reel):
             raise ValidationError('You must specify one of the following fields to save comments, fields: "post, reel"')
         super().save(force_insert, force_update, using, update_fields)
 

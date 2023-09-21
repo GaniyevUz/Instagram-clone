@@ -1,7 +1,8 @@
-from django.contrib.auth.hashers import make_password
-from rest_framework.fields import IntegerField, HiddenField, CurrentUserDefault, BooleanField, DateTimeField
-from rest_framework.relations import PrimaryKeyRelatedField, SlugRelatedField
-from rest_framework.serializers import ModelSerializer, CharField, SerializerMethodField, ReadOnlyField
+from rest_framework.fields import IntegerField, HiddenField, CurrentUserDefault, DateTimeField
+from rest_framework.fields import IntegerField, HiddenField, CurrentUserDefault, DateTimeField
+from rest_framework.relations import SlugRelatedField
+from rest_framework.serializers import ModelSerializer
+
 from users.models import UserProfile
 
 
@@ -70,5 +71,6 @@ class UserFollowingModelSerializer(ModelSerializer):
         follow_user.save()
         return user
 
-    def to_representation(self, instance):
-        return {'message': "you've followed successfully"}
+
+def to_representation(self, instance):
+    return {'message': "you've followed successfully"}

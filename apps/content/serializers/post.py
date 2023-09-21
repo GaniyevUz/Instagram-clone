@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from rest_framework.exceptions import ValidationError
-from rest_framework.fields import ListField, SkipField, CharField
+from rest_framework.fields import ListField, CharField, HiddenField, CurrentUserDefault, SkipField
 from rest_framework.relations import PKOnlyObject
 from rest_framework.serializers import ModelSerializer
 
@@ -11,6 +11,7 @@ from content.models import Post, Media, file_ext_validator
 class PostModelSerializer(ModelSerializer):
     id = CharField(read_only=True)
     media = ListField(validators=(file_ext_validator,))
+    author = HiddenField(default=CurrentUserDefault())
 
     class Meta:
         model = Post

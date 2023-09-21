@@ -73,8 +73,8 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'conf.wsgi.application'
-ASGI_APPLICATION = 'conf.asgi.application'
+WSGI_APPLICATION = 'conf.wsgi.application'
+# ASGI_APPLICATION = 'conf.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -89,6 +89,7 @@ DATABASES = {
         'PORT': os.getenv('DATABASE_PORT')
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -193,22 +194,28 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
+# #
+# sentry_sdk.init(
+#     dsn="https://2b3b7dc40767944a83b72f8a589d2301@o4504361116368896.ingest.sentry.io/4505821303799808",
+#     integrations=[DjangoIntegration()],
+#     # If you wish to associate users to errors (assuming you are using
+#     # django.contrib.auth) you may enable sending PII data.
+#     send_default_pii=True,
+#     # Set traces_sample_rate to 1.0 to capture 100%
+#     # of transactions for performance monitoring.
+#     # We recommend adjusting this value in production.
+#     traces_sample_rate=1.0,
+#     # Set profiles_sample_rate to 1.0 to profile 100%
+#     # of sampled transactions.
+#     # We recommend adjusting this value in production.
+#     profiles_sample_rate=1.0,
+# )
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-    dsn="https://2b3b7dc40767944a83b72f8a589d2301@o4504361116368896.ingest.sentry.io/4505821303799808",
-    integrations=[DjangoIntegration()],
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True,
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-)
+# admin
+# hI57Z8uSLL9XKmVplJPmB5M57Busc9Hs
+# dpg-ck1tpdn03lhc73cnc0bg-a.oregon-postgres.render.com
+# social_db_uefu
+# postgres://admin:@/

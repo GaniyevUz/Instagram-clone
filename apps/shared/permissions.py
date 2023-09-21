@@ -14,3 +14,13 @@ class IsPublicAccount(BasePermission):
         except KeyError:
             return False
         return False
+
+
+def has_permission(username):
+    try:
+        user = UserProfile.objects.filter(username=username)
+        if user.exists():
+            return user.first().is_public
+    except KeyError:
+        return False
+    return False
